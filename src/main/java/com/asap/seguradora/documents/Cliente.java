@@ -1,8 +1,14 @@
 package com.asap.seguradora.documents;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+
 
 @Document
 public class Cliente {
@@ -10,17 +16,25 @@ public class Cliente {
 	@Id	
 	private String id;
 	
-	@Field
+	@NotBlank(message = "O atributo nome não pode ser vazio!")	
+	@Size(min = 5, message = "O atributo nome deve conter no mínimo 5 caracteres!")
 	private String nome;
 	
-	@Field
+	
+	@NotBlank(message = "O atributo CPF não pode ser vazio!")
+	@CPF(message = "O atributo CPF deve ser válido!")
+	@Indexed(unique = true)
 	private String cpf;
 	
-	@Field
+	
+	@NotBlank(message = "O atributo cidade não pode ser vazio!")
+	@Size(min = 5, message = "O atributo cidade deve conter no mínimo 5 caracteres!")
 	private String cidade;
 	
-	@Field
-	private String estado;
+	
+	@NotBlank(message = "O atributo UF não pode ser vazio!")
+	@Size(min = 2, message = "O atributo UF deve conter no mínimo 2 caracteres!")
+	private String uf;
 	
 	public Cliente() {
 		
@@ -64,11 +78,19 @@ public class Cliente {
 		this.cidade = cidade;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [nome=" + nome + ","
+				+ " cpf=" + cpf + ", cidade=" + cidade + ", uf=" + uf + "]";
+	}
+
+	
 }
