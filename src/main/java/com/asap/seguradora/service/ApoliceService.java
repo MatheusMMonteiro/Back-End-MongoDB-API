@@ -13,8 +13,12 @@ import com.asap.seguradora.repository.ApoliceRepository;
 public class ApoliceService {		
 	
 	public long randomNumero(Long numero) {
+		do {
 		Random gerador = new Random();
-		return numero = Long.valueOf(gerador.nextInt(100));
+		numero = Long.valueOf(gerador.nextInt(100));
+		}
+		while (repository.findByNumero(numero).isPresent());		
+		return numero;
 	}
 	@Autowired
 	private ApoliceRepository repository;
