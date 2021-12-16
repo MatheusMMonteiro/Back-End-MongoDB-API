@@ -18,8 +18,9 @@ public class SeguradoraVeiculosApplication implements CommandLineRunner {
 	private ApoliceRepository apoliceRepository;
 
 	@Autowired
-	public SeguradoraVeiculosApplication(ApoliceRepository apoliceRepository) {
+	public SeguradoraVeiculosApplication(ApoliceRepository apoliceRepository, ClienteRepository clienteRepository) {
 		this.apoliceRepository = apoliceRepository;
+		this.clienteRepository = clienteRepository;
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(SeguradoraVeiculosApplication.class, args);
@@ -27,12 +28,9 @@ public class SeguradoraVeiculosApplication implements CommandLineRunner {
 	@Override
 	public void run (String... args) throws Exception {
 		
-		/*if(clienteRepository.findAll().isEmpty()) {
+		if(clienteRepository.findAll().isEmpty()) {
 			clienteRepository.save(new Cliente("Matheus Monteiro de Almeida", "166.236.170-00"));	
-		}else
-		{
-			apoliceRepository.save(new Apolice("ejk-2213"));
-		}*/
+		}
 		if(apoliceRepository.findAll().isEmpty()) {
 			apoliceRepository.save(new Apolice("ejk-2213"));
 		}

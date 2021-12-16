@@ -46,7 +46,7 @@ public class ApoliceController {
 	}
 	
 	@GetMapping("/numero/{numero}")
-	public ResponseEntity<Optional<Apolice>> buscarNumero(@PathVariable(value = "nome") long numero){
+	public ResponseEntity<Optional<Apolice>> buscarNumero(@PathVariable(value = "numero") long numero){
 		Optional<Apolice> objetoLista = repository.findByNumero(numero);
 		
 		if(objetoLista.isEmpty()) {
@@ -79,8 +79,8 @@ public class ApoliceController {
 	@DeleteMapping("/deletar/{numero}")
 	public ResponseEntity<Object> deletar (@PathVariable(value = "numero") long numero){
 		return repository.findByNumero(numero).map(resp ->{
-			repository.deleteById(numero);
-			return ResponseEntity.status(200).build();
+			repository.deleteByNumero(numero);
+			return ResponseEntity.status(204).build();
 		}).orElseThrow(() ->{
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
 					"ID inexistente, passe um ID válido para deletar!");

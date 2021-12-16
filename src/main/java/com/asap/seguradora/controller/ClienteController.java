@@ -80,7 +80,7 @@ public class ClienteController {
 	public ResponseEntity<Object> deletar(@PathVariable(value = "id") String id){
 		return repository.findById(id).map(resp ->{
 			repository.deleteById(id);
-			return ResponseEntity.status(200).build();
+			return ResponseEntity.status(204).build();
 		}).orElseThrow(() ->{
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND,
 					"ID inexistente, passe um ID válido para deletar!");
