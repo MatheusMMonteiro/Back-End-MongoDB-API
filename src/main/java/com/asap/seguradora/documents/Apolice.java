@@ -16,13 +16,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Apolice {
 	
 	@Id
+	private String id;
+	
+	@NotNull
 	private long numero;
 	
-	@NotBlank(message = "O atributo inicioVigencia não pode ser vazio!")
+	
 	@JsonFormat(pattern = "yyyy/MM/dd")
 	private Date inicioVigencia;
 	
-	@NotBlank(message = "O atributo finalVigencia não pode ser vazio!")
 	@JsonFormat(pattern = "yyyy/MM/dd")
 	private Date finalVigencia;
 	
