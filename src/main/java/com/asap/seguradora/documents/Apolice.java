@@ -23,7 +23,7 @@ public class Apolice {
 	
 	
 	@JsonFormat(pattern = "yyyy/MM/dd")
-	private Date inicioVigencia;
+	private Date inicioVigencia = new java.sql.Date(System.currentTimeMillis());
 	
 	@JsonFormat(pattern = "yyyy/MM/dd")
 	private Date finalVigencia;
