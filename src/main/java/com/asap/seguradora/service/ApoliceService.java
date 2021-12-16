@@ -1,6 +1,7 @@
 package com.asap.seguradora.service;
 
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +10,12 @@ import com.asap.seguradora.documents.Apolice;
 import com.asap.seguradora.repository.ApoliceRepository;
 
 @Service
-public class ApoliceService {
+public class ApoliceService {		
 	
+	public long randomNumero(Long numero) {
+		Random gerador = new Random();
+		return numero = Long.valueOf(gerador.nextInt(100));
+	}
 	@Autowired
 	private ApoliceRepository repository;
 	
@@ -18,16 +23,17 @@ public class ApoliceService {
 		return repository.findByPlacaVeiculo(apolice.getPlacaVeiculo()).map(resp ->{
 			return Optional.empty();
 		}).orElseGet(() -> {
+			apolice.setNumero(randomNumero(apolice.getNumero()));
 			return Optional.ofNullable(repository.save(apolice));
 		});
 	}
 	
 	public Optional<Apolice> atualizarApolice(Apolice apolice){
-		return repository.findByNumero(apolice.getNumero()).map(resp ->{
+		return repository.findByNumero(apolice.getNumero()).map(resp ->{			
 			resp.setInicioVigencia(apolice.getInicioVigencia());
 			resp.setFinalVigencia(apolice.getFinalVigencia());
 			resp.setPlacaVeiculo(apolice.getPlacaVeiculo());
-			resp.setValor(apolice.getValor());
+			resp.setValor(apolice.getValor());			
 			return Optional.ofNullable(repository.save(resp));
 		}).orElseGet(() ->{
 			return Optional.empty();
