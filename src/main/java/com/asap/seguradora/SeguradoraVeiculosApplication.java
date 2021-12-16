@@ -5,17 +5,21 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.asap.seguradora.documents.Apolice;
 import com.asap.seguradora.documents.Cliente;
+import com.asap.seguradora.repository.ApoliceRepository;
 import com.asap.seguradora.repository.ClienteRepository;
 
 @SpringBootApplication
 public class SeguradoraVeiculosApplication implements CommandLineRunner {
 	
 	private  ClienteRepository clienteRepository;
+	
+	private ApoliceRepository apoliceRepository;
 
 	@Autowired
-	public SeguradoraVeiculosApplication(ClienteRepository clienteRepository) {
-		this.clienteRepository = clienteRepository;
+	public SeguradoraVeiculosApplication(ApoliceRepository apoliceRepository) {
+		this.apoliceRepository = apoliceRepository;
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(SeguradoraVeiculosApplication.class, args);
@@ -23,9 +27,14 @@ public class SeguradoraVeiculosApplication implements CommandLineRunner {
 	@Override
 	public void run (String... args) throws Exception {
 		
-		if(clienteRepository.findAll().isEmpty()) {
-			clienteRepository.save(new Cliente("Matheus", "12313221"));
-			clienteRepository.save(new Cliente("Matheus monteiro", "1231a3221"));
+		/*if(clienteRepository.findAll().isEmpty()) {
+			clienteRepository.save(new Cliente("Matheus Monteiro de Almeida", "166.236.170-00"));	
+		}else
+		{
+			apoliceRepository.save(new Apolice("ejk-2213"));
+		}*/
+		if(apoliceRepository.findAll().isEmpty()) {
+			apoliceRepository.save(new Apolice("ejk-2213"));
 		}
 	}
 

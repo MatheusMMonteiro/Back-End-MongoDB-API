@@ -14,4 +14,5 @@ public interface ClienteRepository extends MongoRepository<Cliente, String>{
 	public Optional<Cliente> findByCpf(String cpf);
 	
 	public List<Cliente> findAllByNomeContainingIgnoreCase(String nome);
+	
 }

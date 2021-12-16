@@ -14,16 +14,13 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository repository;
 	
-	public Optional<Object> cadastrarCliente(Cliente cliente){
-		return (repository.findById(cliente.getId())).map(resp -> {
-			return Optional.empty();
-		}).orElseGet(()->{
+	public Optional<Object> cadastrarCliente(Cliente cliente){		
 			return repository.findByCpf(cliente.getCpf()).map(resp ->{
 				return Optional.empty();
 			}).orElseGet(() ->{
 				return Optional.ofNullable(repository.save(cliente));
 			});			
-		});
+		
 	}
 	
 	public Optional<Cliente> atualizarCliente(Cliente cliente){

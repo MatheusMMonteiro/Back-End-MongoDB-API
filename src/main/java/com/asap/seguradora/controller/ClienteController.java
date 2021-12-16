@@ -76,7 +76,7 @@ public class ClienteController {
 				});
 	}
 	
-	@DeleteMapping("deletar/{id}")
+	@DeleteMapping("/deletar/{id}")
 	public ResponseEntity<Object> deletar(@PathVariable(value = "id") String id){
 		return repository.findById(id).map(resp ->{
 			repository.deleteById(id);
