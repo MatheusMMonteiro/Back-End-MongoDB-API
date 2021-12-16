@@ -1,7 +1,6 @@
 
-<p>![logo-asap](https://user-images.githubusercontent.com/42879442/146367013-f8fc88ea-8260-408d-897a-0645479dfcc6.png)
-
 <div align="center">
+  <img src="https://user-images.githubusercontent.com/42879442/146373175-370027bf-c7b8-49c4-9f4a-3d7918b5ba1c.png" width="600" align="center">
   
 
   <h1>CRUD Spring Boot - NoSQL</h1>
