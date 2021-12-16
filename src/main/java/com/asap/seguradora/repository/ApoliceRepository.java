@@ -14,6 +14,8 @@ public interface ApoliceRepository extends MongoRepository<Apolice, Long> {
 	
 	public Optional<Apolice> findByPlacaVeiculo(String placa);
 	
+	public Optional<Apolice> deleteByNumero(long numero);
+	
 	
 
 }
